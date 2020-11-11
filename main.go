@@ -2,59 +2,78 @@ package main
 
 import (
 	"log"
+	"math"
+	"time"
 
 	"golang.org/x/mobile/app"
 	"golang.org/x/mobile/event/lifecycle"
 	"golang.org/x/mobile/event/paint"
+	"golang.org/x/mobile/event/size"
+
+	"github.com/tfriedel6/canvas"
+	"github.com/tfriedel6/canvas/backend/xmobilebackend"
+
 	//"golang.org/x/mobile/event/size"
 	//"golang.org/x/mobile/event/touch"
-	"golang.org/x/mobile/exp/app/debug"
+
 	//"golang.org/x/mobile/exp/f32"
-	"go101.org/go-skia"
-	"golang.org/x/mobile/exp/gl/glutil"
+
 	"golang.org/x/mobile/gl"
-)
-
-var (
-	images   *glutil.Images
-	fps      *debug.FPS
-	program  gl.Program
-	position gl.Attrib
-	offset   gl.Uniform
-	color    gl.Uniform
-	buf      gl.Buffer
-
-	green     float32
-	touchX    float32
-	touchY    float32
-	glcontext gl.Context
 )
 
 func main() {
 	app.Main(func(a app.App) {
+		var cv, painter *canvas.Canvas
+		var cvb *xmobilebackend.XMobileBackendOffscreen
+		var painterb *xmobilebackend.XMobileBackend
+		var w, h int
+
+		var glctx gl.Context
 		for e := range a.Events() {
 			switch e := a.Filter(e).(type) {
 			case lifecycle.Event:
-				// ...
+				switch e.Crosses(lifecycle.StageVisible) {
+				case lifecycle.CrossOn:
+					var err error
+					glctx = e.DrawContext.(gl.Context)
+					ctx, err := xmobilebackend.NewGLContext(glctx)
+					if err != nil {
+						log.Fatal(err)
+					}
+					cvb, err = xmobilebackend.NewOffscreen(0, 0, false, ctx)
+					if err != nil {
+						log.Fatalln(err)
+					}
+					painterb, err = xmobilebackend.New(0, 0, 0, 0, ctx)
+					if err != nil {
+						log.Fatalln(err)
+					}
+					cv = canvas.New(cvb)
+					painter = canvas.New(painterb)
+					a.Send(paint.Event{})
+				case lifecycle.CrossOff:
+					cvb.Delete()
+					glctx = nil
+				}
+			case size.Event:
+				w, h = e.WidthPx, e.HeightPx
 			case paint.Event:
-				log.Print(e)
-				a.Publish()
+				if glctx != nil {
+					cvb.SetSize(w, h)
+
+					fw, fh := float64(w), float64(h)
+					color := math.Sin(float64(time.Now().UnixNano())*0.000000002)*0.3 + 0.7
+
+					cv.SetFillStyle(color*0.2, color*0.2, color*0.8)
+					cv.FillRect(fw*0.25, fh*0.25, fw*0.5, fh*0.5)
+
+					painterb.SetBounds(0, 0, w, h)
+					painter.DrawImage(cv)
+
+					a.Publish()
+					a.Send(paint.Event{})
+				}
 			}
 		}
 	})
-}
-
-func onStart(glctx gl.Context) {
-
-	//skia.
-	buf = glctx.CreateBuffer()
-	glctx.BindBuffer(gl.ARRAY_BUFFER, buf)
-	glctx.BufferData(gl.ARRAY_BUFFER, triangleData, gl.STATIC_DRAW)
-
-	position = glctx.GetAttribLocation(program, "position")
-	color = glctx.GetUniformLocation(program, "color")
-	offset = glctx.GetUniformLocation(program, "offset")
-
-	images = glutil.NewImages(glctx)
-	fps = debug.NewFPS(images)
 }
