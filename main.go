@@ -18,24 +18,7 @@ import (
 
 var Widgets []widgets.Widget
 
-func AddWidget() {
-	rect := widgets.Rect{Top: widgets.Point{100, 100}, Width: 1000, Height: 700, Color: widgets.Color{R: 10, G: 10, B: 200, A: 0}, Fill: true}
-	Widgets = append(Widgets, &rect)
-	but := widgets.Button{
-		Top:          widgets.Point{400, 400},
-		Text:         "BUTTON",
-		Width:        300,
-		Height:       300,
-		BorderRadius: 0,
-		Color:        widgets.Color{0, 255, 0, 0},
-		PressedColor: widgets.Color{255, 0, 0, 0},
-		TextColor:    widgets.Color{0, 0, 255, 0},
-	}
-	Widgets = append(Widgets, &but)
-}
-
-func main() {
-	AddWidget()
+func StartApp() {
 	app.Main(func(a app.App) {
 		var cv, painter *canvas.Canvas
 		var cvb *xmobilebackend.XMobileBackendOffscreen

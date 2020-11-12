@@ -2,8 +2,8 @@ package widgets
 
 import (
 	"github.com/tfriedel6/canvas"
-	"math"
-	"time"
+	//"math"
+	//"time"
 )
 
 type Rect struct {
@@ -16,9 +16,10 @@ type Rect struct {
 
 func (r *Rect) Paint(cv *canvas.Canvas, width float64, height float64) {
 
-	color := math.Sin(float64(time.Now().UnixNano())*0.000000002)*0.3 + 0.7
+	//color := math.Sin(float64(time.Now().UnixNano())*0.000000002)*0.3 + 0.7
 
-	cv.SetFillStyle(color*(float64(r.Color.R)/255), color*(float64(r.Color.G)/255), color*(float64(r.Color.B)/255))
+	//cv.SetFillStyle(color*(float64(r.Color.R)/255), color*(float64(r.Color.G)/255), color*(float64(r.Color.B)/255))
+	cv.SetFillStyle(r.Color.R, r.Color.G, r.Color.B)
 	if r.Fill {
 		cv.FillRect(r.Top.X, r.Top.Y, r.Width, r.Height)
 	} else {

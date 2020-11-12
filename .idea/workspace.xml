@@ -20,14 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0cfff58-6aef-482c-b0ef-e9ce85cb975c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/widgets/button.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/widgets/paintstruct.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/widgets/rect.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/widgets/label.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_go.apk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paintstruct.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/button.go" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/button.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/widgets/rect.go" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/rect.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="G:/Program Files/Go" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -58,8 +57,10 @@
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -68,10 +69,11 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples" />
       <recent name="E:\Reposs\GoPhoneTest\widgets" />
     </key>
   </component>

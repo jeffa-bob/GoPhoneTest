@@ -4,7 +4,7 @@ import (
 	"github.com/tfriedel6/canvas"
 )
 
-type Button struct {
+type Label struct {
 	Top                                           Point
 	Text                                          string
 	Width, Height, BorderRadius                   float64
@@ -12,7 +12,7 @@ type Button struct {
 	isPressed                                     bool
 }
 
-func (r *Button) Paint(cv *canvas.Canvas, width float64, height float64) {
+func (r *Label) Paint(cv *canvas.Canvas, width float64, height float64) {
 
 	cv.SetFillStyle(r.Color.R, r.Color.G, r.Color.B)
 	cv.FillRect(r.Top.X, r.Top.Y, r.Width, r.Height)
@@ -23,7 +23,7 @@ func (r *Button) Paint(cv *canvas.Canvas, width float64, height float64) {
 	cv.StrokeText(r.Text, r.Top.X+(r.Width/2), r.Top.Y+(r.Height/2))
 }
 
-func (r *Button) IsInside(x float64, y float64) bool {
+func (r *Label) IsInside(x float64, y float64) bool {
 	x1, y1 := r.Top.X, r.Top.Y
 	x2, y2 := r.Top.X+r.Width, r.Top.Y+r.Height
 
@@ -33,12 +33,12 @@ func (r *Button) IsInside(x float64, y float64) bool {
 	return false
 }
 
-func (r *Button) OnPressed() {
+func (r *Label) OnPressed() {
 	r.isPressed = true
 	r.originalColor = r.Color
 	r.Color = r.PressedColor
 }
-func (r *Button) OffPressed() {
+func (r *Label) OffPressed() {
 	r.isPressed = false
 	r.Color = r.originalColor
 }
