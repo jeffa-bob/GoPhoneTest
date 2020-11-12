@@ -1,4 +1,4 @@
-module main.go
+module GoPhoneTest
 
 go 1.15
 

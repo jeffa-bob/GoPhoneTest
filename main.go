@@ -1,27 +1,41 @@
-package main
+package GoPhoneTest
 
 import (
-	"log"
-	"math"
-	"time"
-
 	"golang.org/x/mobile/app"
 	"golang.org/x/mobile/event/lifecycle"
 	"golang.org/x/mobile/event/paint"
 	"golang.org/x/mobile/event/size"
+	"golang.org/x/mobile/event/touch"
+	"log"
 
 	"github.com/tfriedel6/canvas"
 	"github.com/tfriedel6/canvas/backend/xmobilebackend"
 
-	//"golang.org/x/mobile/event/size"
-	//"golang.org/x/mobile/event/touch"
-
 	//"golang.org/x/mobile/exp/f32"
-
+	"GoPhoneTest/widgets"
 	"golang.org/x/mobile/gl"
 )
 
+var Widgets []widgets.Widget
+
+func AddWidget() {
+	rect := widgets.Rect{Top: widgets.Point{100, 100}, Width: 1000, Height: 700, Color: widgets.Color{R: 10, G: 10, B: 200, A: 0}, Fill: true}
+	Widgets = append(Widgets, &rect)
+	but := widgets.Button{
+		Top:          widgets.Point{400, 400},
+		Text:         "BUTTON",
+		Width:        300,
+		Height:       300,
+		BorderRadius: 0,
+		Color:        widgets.Color{0, 255, 0, 0},
+		PressedColor: widgets.Color{255, 0, 0, 0},
+		TextColor:    widgets.Color{0, 0, 255, 0},
+	}
+	Widgets = append(Widgets, &but)
+}
+
 func main() {
+	AddWidget()
 	app.Main(func(a app.App) {
 		var cv, painter *canvas.Canvas
 		var cvb *xmobilebackend.XMobileBackendOffscreen
@@ -62,10 +76,10 @@ func main() {
 					cvb.SetSize(w, h)
 
 					fw, fh := float64(w), float64(h)
-					color := math.Sin(float64(time.Now().UnixNano())*0.000000002)*0.3 + 0.7
 
-					cv.SetFillStyle(color*0.2, color*0.2, color*0.8)
-					cv.FillRect(fw*0.25, fh*0.25, fw*0.5, fh*0.5)
+					for _, w := range Widgets {
+						w.Paint(cv, fw, fh)
+					}
 
 					painterb.SetBounds(0, 0, w, h)
 					painter.DrawImage(cv)
@@ -73,6 +87,8 @@ func main() {
 					a.Publish()
 					a.Send(paint.Event{})
 				}
+			case touch.Event:
+
 			}
 		}
 	})
