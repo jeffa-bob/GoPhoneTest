@@ -43,3 +43,6 @@ func (r *Rect) OnPressed() {
 func (r *Rect) OffPressed() {
 	r.isPressed = false
 }
+func (r *Rect) GetPressed() bool {
+	return r.isPressed
+}

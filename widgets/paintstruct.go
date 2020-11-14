@@ -9,6 +9,7 @@ type Widget interface {
 	IsInside(x float64, y float64) bool
 	OnPressed()
 	OffPressed()
+	GetPressed() bool
 }
 
 type Point struct {
@@ -18,3 +19,8 @@ type Point struct {
 type Color struct {
 	R, G, B, A uint8
 }
+
+const (
+	Circle = iota
+	Rectangle
+)

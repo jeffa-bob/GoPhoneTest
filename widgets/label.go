@@ -42,3 +42,6 @@ func (r *Label) OffPressed() {
 	r.isPressed = false
 	r.Color = r.originalColor
 }
+func (r *Label) GetPressed() bool {
+	return r.isPressed
+}
