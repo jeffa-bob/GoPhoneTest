@@ -71,14 +71,21 @@ func StartApp() {
 					a.Send(paint.Event{})
 				}
 			case touch.Event:
-				for _, w := range Widgets {
-					pressed := w.IsInside(float64(e.X), float64(e.Y))
-					Curpressed := w.GetPressed()
-					if pressed && !Curpressed {
-						w.OnPressed()
-					} else if !pressed && Curpressed {
-						w.OnPressed()
+				if e.Type == touch.TypeBegin {
+					for _, w := range Widgets {
+						pressed := w.IsInside(float64(e.X), float64(e.Y))
+						if pressed {
+							w.OnPressed()
+						}
 					}
+
+				} else if e.Type == touch.TypeEnd {
+					for _, w := range Widgets {
+						if w.GetPressed() {
+							w.OffPressed()
+						}
+					}
+
 				}
 			}
 		}

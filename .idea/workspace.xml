@@ -21,11 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e0cfff58-6aef-482c-b0ef-e9ce85cb975c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/widgets/button.go" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/button.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/label.go" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/label.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/paintstruct.go" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/paintstruct.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/widgets/rect.go" beforeDir="false" afterPath="$PROJECT_DIR$/widgets/rect.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +38,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" url="file://G:/Program Files/Go" />
+  <component name="GOROOT" url="file:///usr/local/go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
